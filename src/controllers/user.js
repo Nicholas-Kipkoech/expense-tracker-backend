@@ -1,5 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "../utils/bcrypt.js";
+import createToken from "../utils/jwt.js";
 
 class UserController {
   async createUser(req, res) {
@@ -32,9 +33,7 @@ class UserController {
   async userLogin(req, res) {
     try {
       const { email, password } = req.body;
-
       const user = await User.findOne({ email: email });
-
       const isValidPass = await bcrypt.compare(password, user.password);
       if (!isValidPass) {
         return res.status(401).json({ error: "Invalid password!" });
@@ -46,6 +45,7 @@ class UserController {
         accessToken: token,
       });
     } catch (error) {
+      console.error(error);
       return res.status(500).json(error);
     }
   }
