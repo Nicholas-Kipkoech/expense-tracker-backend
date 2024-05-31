@@ -13,15 +13,6 @@ class ExpenseController {
         createdBy: user._id,
       });
       await newExpense.save();
-      const earning = await Earning.findOne({ createdBy: user._id });
-      if (!earning) {
-        return res.status(404).json({
-          success: false,
-          message: "Earning record not found for the user.",
-        });
-      }
-      earning.earningAmount -= expenseAmount;
-      await earning.save();
       return res
         .status(200)
         .json({ success: true, message: "expense added success fully" });
