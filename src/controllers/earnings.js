@@ -3,10 +3,10 @@ import Earning from "../models/earnings.js";
 class EarningController {
   async addEarning(req, res) {
     try {
-      const { newAmount } = req.body;
+      const { additionalAmount } = req.body;
       const user = req.user;
       const earning = await Earning.findOne({ createdBy: user.payload._id });
-      earning.earningAmount = newAmount;
+      earning.earningAmount += additionalAmount;
       await earning.save();
       return res
         .status(200)
