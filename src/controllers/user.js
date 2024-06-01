@@ -40,6 +40,9 @@ class UserController {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email: email });
+      if (!user) {
+        return res.status(400).json({ error: `${email} does not exist!` });
+      }
       const isValidPass = await bcrypt.compare(password, user.password);
       if (!isValidPass) {
         return res.status(401).json({ error: "Invalid password!" });
