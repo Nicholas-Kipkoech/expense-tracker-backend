@@ -20,13 +20,14 @@ export async function sendEmail(subject, html, recieverEmail) {
 
 export async function sendTotalExpenseToday(
   subject,
-  recieverEmail,
+  firstName,
+  secondName,
   expenseTotal
 ) {
   const html = `
-  <div>
-  <p>Hello ${recieverEmail} your expense today is KSH ${expenseTotal}</p>
-  </div>
+
+<div class="total-expense"> Dear ${firstName} ${secondName} Your total expense is KSH ${expenseTotal}</div>
+
 
   
   `;

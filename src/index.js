@@ -26,7 +26,8 @@ async function sendEmails() {
     if (users) {
       await sendTotalExpenseToday(
         "Your Expense",
-        users[i].email,
+        users[i].firstName,
+        users[i].lastName,
         expense.expenseAmount
       );
     }
