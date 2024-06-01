@@ -26,7 +26,15 @@ export async function sendTotalExpenseToday(
 ) {
   const html = `
 
-<div class="total-expense"> Dear ${firstName} ${secondName} Your total expense is KSH ${expenseTotal}</div>
+<div style={{ont-family: Arial, sans-serif;
+font-size: 24px;
+color: #333;
+background-color: #f9f9f9;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+width: "auto";
+text-align: center;}}> Dear ${firstName} ${secondName} Your total expense is KSH ${expenseTotal}</div>
 
 
   
