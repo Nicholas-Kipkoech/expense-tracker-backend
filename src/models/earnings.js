@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const earningSchema = mongoose.Schema(
+const earningSchema = new mongoose.Schema(
   {
-    earningAmount: { type: Number },
+    earningAmount: { type: Number, default: 0 },
     createdBy: { type: String },
   },
   { timestamps: true }

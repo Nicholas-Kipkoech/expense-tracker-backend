@@ -11,5 +11,8 @@ expenseRouter.post("/add", authenticateJWT, (req, res) => {
 expenseRouter.get("/fetch", authenticateJWT, (req, res) => {
   expenseController.fetchExpenses(req, res);
 });
+expenseRouter.delete("/:expenseId", authenticateJWT, (req, res) => {
+  expenseController.deleteExpense(req, res);
+});
 
 export default expenseRouter;

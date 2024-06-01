@@ -1,3 +1,4 @@
+import Earning from "../models/earnings.js";
 import User from "../models/user.js";
 import bcrypt from "../utils/bcrypt.js";
 import createToken from "../utils/jwt.js";
@@ -17,8 +18,13 @@ class UserController {
         lastName,
         password: hashPass,
       });
-
+      await newUser.save();
       if (newUser) {
+        const earning = await Earning.create({
+          earningAmount: 0,
+          createdBy: newUser._id,
+        });
+        await earning.save();
         return res.status(200).json({
           success: true,
           message: "User created succesfully",
