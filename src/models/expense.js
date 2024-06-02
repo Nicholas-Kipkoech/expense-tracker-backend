@@ -4,6 +4,7 @@ const expenseSchema = new mongoose.Schema(
   {
     expenseName: { type: String },
     expenseAmount: { type: String },
+    expenseType: { type: String },
     createdBy: { type: String },
   },
   { timestamps: true }

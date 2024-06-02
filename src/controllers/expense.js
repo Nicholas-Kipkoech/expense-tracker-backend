@@ -3,12 +3,13 @@ import Expense from "../models/expense.js";
 class ExpenseController {
   async createExpense(req, res) {
     try {
-      const { expenseName, expenseAmount } = req.body;
+      const { expenseName, expenseAmount, expenseType } = req.body;
       const user = req.user;
 
       const newExpense = new Expense({
         expenseName,
         expenseAmount,
+        expenseType,
         createdBy: user.payload._id,
       });
       await newExpense.save();
@@ -24,8 +25,6 @@ class ExpenseController {
   async fetchExpenses(req, res) {
     try {
       const user = req.user;
-      console.log(user.payload._id);
-
       const expenses = await Expense.find({ createdBy: user.payload._id });
       return res.status(200).json({ expenses });
     } catch (error) {
