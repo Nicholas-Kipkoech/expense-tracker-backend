@@ -26,7 +26,10 @@ class ExpenseController {
     try {
       const user = req.user;
       const expenses = await Expense.find({ createdBy: user.payload._id });
-      return res.status(200).json({ expenses });
+      const filteredExpenses = expenses.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      return res.status(200).json({ expenses: filteredExpenses });
     } catch (error) {
       console.error(error);
       return res.status(500).json(error);
