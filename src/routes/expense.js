@@ -1,18 +1,18 @@
 import { Router } from "express";
-import expenseController from "../controllers/expense.js";
 import authenticateJWT from "../middlewares/middleware.js";
+import { ExpenseController } from "../controllers/expense.js";
 
 const expenseRouter = Router();
 
 expenseRouter.post("/add", authenticateJWT, (req, res) => {
-  expenseController.createExpense(req, res);
+  ExpenseController.createExpense(req, res);
 });
 
 expenseRouter.get("/fetch", authenticateJWT, (req, res) => {
-  expenseController.fetchExpenses(req, res);
+  ExpenseController.createExpense(req, res);
 });
 expenseRouter.delete("/:expenseId", authenticateJWT, (req, res) => {
-  expenseController.deleteExpense(req, res);
+  ExpenseController.createExpense(req, res);
 });
 
 export default expenseRouter;

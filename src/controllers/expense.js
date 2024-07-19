@@ -1,7 +1,7 @@
 import Expense from "../models/expense.js";
 
-class ExpenseController {
-  async createExpense(req, res) {
+export class ExpenseController {
+  static async createExpense(req, res) {
     try {
       const { expenseName, expenseAmount, expenseType } = req.body;
       const user = req.user;
@@ -22,7 +22,7 @@ class ExpenseController {
     }
   }
 
-  async fetchExpenses(req, res) {
+  static async fetchExpenses(req, res) {
     try {
       const user = req.user;
       const expenses = await Expense.find({ createdBy: user.payload._id });
@@ -35,7 +35,7 @@ class ExpenseController {
       return res.status(500).json(error);
     }
   }
-  async deleteExpense(req, res) {
+  static async deleteExpense(req, res) {
     try {
       const { expenseId } = req.params;
       await Expense.findOneAndDelete({ _id: expenseId });
@@ -48,7 +48,3 @@ class ExpenseController {
     }
   }
 }
-
-const expenseController = new ExpenseController();
-
-export default expenseController;
